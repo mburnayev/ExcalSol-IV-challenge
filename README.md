@@ -24,14 +24,9 @@ xyz
 
 ### Notes
 Tech stack used:
-Frontend:
 - JavaScript with Angular Framework
 - AWS EC2s for hosting
-
-Backend:
 - Java with Spring Boot Framework
 - AWS RDS
-
-DevOps:
 - Docker
 - Jenkins
