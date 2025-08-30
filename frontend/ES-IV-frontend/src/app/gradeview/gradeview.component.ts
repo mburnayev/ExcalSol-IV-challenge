@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-gradeview',
   imports: [RouterOutlet],
   templateUrl: './gradeview.component.html',
-  styleUrl: './gradeview.component.css'
+  standalone: true
 })
 export class GradeviewComponent {
 

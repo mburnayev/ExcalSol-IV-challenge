@@ -31,5 +31,7 @@ Tech stack used:
 - Docker
 - Jenkins
 
-### Documentation
-Frontend: https://www.w3schools.com/css/css_align.asp
+### Sources Used
+Frontend:
+https://www.w3schools.com/css/css_align.asp
+https://v17.angular.io/guide/router

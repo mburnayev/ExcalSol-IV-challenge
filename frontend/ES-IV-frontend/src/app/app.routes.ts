@@ -1,18 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { Routes } from '@angular/router';
 import { GradeviewComponent } from './gradeview/gradeview.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-    {path: "", component: AppComponent},
-    // {path: "home", component: AppComponent},
-    {path: "grades", component: GradeviewComponent},
-    // {path: "**", component: AppComponent}
+    { path: "", component: HomeComponent },
+    { path: "grades", component: GradeviewComponent },
+    { path: "**", redirectTo: "" }
 ];
-
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
-})
-
-export class AppRoutingModule {}
