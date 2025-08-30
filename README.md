@@ -30,3 +30,6 @@ Tech stack used:
 - AWS RDS
 - Docker
 - Jenkins
+
+### Documentation
+Frontend: https://www.w3schools.com/css/css_align.asp

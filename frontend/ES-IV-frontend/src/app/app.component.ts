@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'ES-IV-frontend';
+
+  constructor(private router: Router) {}
+  
+  onSubmit() {
+    this.router.navigate(["/grades"]);
+  }
 }
