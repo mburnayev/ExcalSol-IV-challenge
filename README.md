@@ -11,7 +11,7 @@ An implementation of the provisioned interview coding challenge\
 - I imagine the business context highlights are not merely suggestions, and I should actually have a robust system that is publicly accessible
 
 ### High-Level System Diagram
-xyz
+<img width="748" height="550" alt="Screenshot 2025-09-01 at 12 58 24 PM" src="https://github.com/user-attachments/assets/294e6a30-a52a-4bc3-907f-08fa644b10df" />
 
 ### Core Component Deployment Diagram
 xyz
@@ -22,6 +22,7 @@ xyz
 - Create a MySQL database
 - Create schema and tables for holding students, classes, enrollments, and grades
 - Create Spring Boot backend using https://start.spring.io, set up using the screenshot configuration
+<img width="680" height="470" alt="Screenshot 2025-09-01 at 12 05 04 PM" src="https://github.com/user-attachments/assets/bbb728e6-5620-455e-b530-d26c2d5afdcf" />
 
 - Generate and extract zip contents
 - TBD
@@ -37,7 +38,7 @@ Tech stack used:
 - HTML + TypeScript with Angular Framework
 - Java with Spring Boot Framework
 - MySQL Database
-
+---
 - Locally hosted frontend -> AWS EC2s for hosting w/ Nginx
 - Locally hosted backend -> AWS EC2 as well probably
 - Locally hosted MySQL DB -> AWS RDS
@@ -45,12 +46,12 @@ Tech stack used:
 - Jenkins
 
 ### Sources Used
-Frontend:
-https://www.w3schools.com/css/css_align.asp
-https://v17.angular.io/guide/router
+Frontend:\
+https://www.w3schools.com/css/css_align.asp <br>
+https://v17.angular.io/guide/router <br>
 
-Backend:
+Backend: \
 
-Database:
-https://www.youtube.com/watch?v=ODA3rWfmzg8
+Database: \
+https://www.youtube.com/watch?v=ODA3rWfmzg8 <br>
 
