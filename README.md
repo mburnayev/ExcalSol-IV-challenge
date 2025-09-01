@@ -51,7 +51,9 @@ https://www.w3schools.com/css/css_align.asp <br>
 https://v17.angular.io/guide/router <br>
 
 Backend: \
+https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/ <br>
 
 Database: \
 https://www.youtube.com/watch?v=ODA3rWfmzg8 <br>
+https://www.w3schools.com/sql/sql_datatypes.asp and adjacent pages on keywords<br>
 
