@@ -25,7 +25,9 @@ xyz
 <img width="680" height="470" alt="Screenshot 2025-09-01 at 12 05 04 PM" src="https://github.com/user-attachments/assets/bbb728e6-5620-455e-b530-d26c2d5afdcf" />
 
 - Generate and extract zip contents
-- TBD
+- Inside of the unzipped folder, navigate to src/main/java/<your group>
+- If the controller, entity, repository, and service subdirectories aren't present, make them
+- Implement the respective functionalities inside each of these subdirectories
 
 ### Testing Steps
 xyz
