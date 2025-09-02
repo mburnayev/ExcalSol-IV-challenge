@@ -17,29 +17,62 @@ An implementation of the provisioned interview coding challenge\
 xyz
 
 ### Setup Instructions
-- Create a landing page that will allow users to log in and sign up
-- Create a page where scores will be displayed
+- Download your MySQL community server from [here](https://dev.mysql.com/downloads/) and install it
+    - Optionally install MySQL Workbench to access and interact with your databases through a GUI
 - Create a MySQL database
-- Create schema and tables for holding students, classes, enrollments, and grades
-- Create Spring Boot backend using https://start.spring.io, set up using the screenshot configuration
+- Using the database you just created, create tables in your database based on your schema
+- Your database, while running, will by default be hosted on port 3306
+
+- Create Spring Boot backend using its [bootstrapper](https://start.spring.io), set up using the screenshot configuration
 <img width="680" height="470" alt="Screenshot 2025-09-01 at 12 05 04 PM" src="https://github.com/user-attachments/assets/bbb728e6-5620-455e-b530-d26c2d5afdcf" />
 
-- Generate and extract zip contents
-- Inside of the unzipped folder, navigate to src/main/java/<your group>
+- Hit "generate" and extract the zip contents into your workspace
+- Inside your workspace, navigate to src/main/resources and update application.properties to allow your backend access to your database
+- Inside your workspace, navigate to src/main/java/<your group>
 - If the controller, entity, repository, and service subdirectories aren't present, make them
 - Implement the respective functionalities inside each of these subdirectories
+- Once complete, run your backend server using mvn `mvn spring-boot:run`, you'll have to have Maven installed for this
+- Your backend, while running, will by default be hosted on port 8080
+
+- Create a landing page that will allow users to log in and sign up
+- Create a page where scores will be displayed
 
 ### Testing Steps
-xyz
+#### Database
+Since I opted for a very simple schema with only one table, testing the database by directly querying in the minimalist fashion that the backend will also be doing it is also simple — the Student table has 13 columns: 1 for an id, 1 for a username, 1 for a password hash, and 10 for grades.
+
+As such, entries can be created using
+```
+INSERT INTO Student
+VALUES(<integer>, "username", "password", "2 char string"/NULL, ..., "2 char string"/NULL);
+```
+
+Entries can be filtered through using
+```
+SELECT <column(s)> FROM Student WHERE <criteria>;
+```
+#### Backend
+Backend testing can be done using Postman since API endpoints are set up (though testing using localhost requires installing Postman Agent), and GET and POST requests can be tested as follows:
+GET:
+
+POST:
+
+
 
 ### Notes
 Originally created so that entire system runs locally and frontend can be accessed via localhost
 (Plans to get this implementation) Revised and fully public-facing using cloud services
 
+As mentioned in the Testing Steps, the database schema I used is very simple and not a good representation of best practices when using relational databases: I opted for this solution strictly for demonstrative purposes. I initially came up with a more complex schema, as shown below, that made use of relations, but realized it would take longer to create test queries and even longer to implement backend calls that would satisfy the relations, so I opted for what I knew I could implement in the time I had alloted.
+
+
+I originally planned to use Spring Security to add an extra layer of authentication to the server running Spring Boot, but during my testing in Postman, I found that POST requests specifically were being denied due to a lack of authorization, despite correctly configuring the Auth Type (since it was needed for GETs as well, and those worked). Solutions online indicated the best solution to work this issue was to simply disable Spring Security (but just for testing/development purposes !), but I decided to continue without excess dependencies, so I removed it.
+
 Tech stack used:
 - HTML + TypeScript with Angular Framework
 - Java with Spring Boot Framework
 - MySQL Database
+- Postman
 ---
 - Locally hosted frontend -> AWS EC2s for hosting w/ Nginx
 - Locally hosted backend -> AWS EC2 as well probably
@@ -54,8 +87,11 @@ https://v17.angular.io/guide/router <br>
 
 Backend: \
 https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/ <br>
+https://stackoverflow.com/questions/40902280/what-is-the-recommended-project-structure-for-spring-boot-rest-projects <br>
+https://stackoverflow.com/questions/54758872/spring-boot-security-postman-gives-401-unauthorized <br>
 
 Database: \
 https://www.youtube.com/watch?v=ODA3rWfmzg8 <br>
-https://www.w3schools.com/sql/sql_datatypes.asp and adjacent pages on keywords<br>
+https://www.w3schools.com/sql/sql_syntax.asp <br>
+https://www.w3schools.com/sql/sql_datatypes.asp and adjacent pages on keywords <br>
 
