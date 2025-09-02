@@ -155,9 +155,4 @@ public class Student {
     public void setGrade9(String grade) {
         grade9 = grade;
     }
-
-    // @Override
-    // public String toString() {
-    //     return "Student {" + "id = ";
-    // }
 }
