@@ -7,7 +7,7 @@ An implementation of the provisioned interview coding challenge\
 - I imagine the interview challenge doc is confidential, so it should probably not go in this repository
 - I should probably keep this repository private until the day of presentation (or just add my IVers?)
 - I can create arbitrary records as soon as a user is created [confirmed]
-- Considering that I'm created a gradebook that's only viewable by students, implementing just GET/POSTS is sufficient [confirmed]
+- Considering that I'm created a gradebook that's only viewable by students, implementing just GET/POSTs is sufficient [confirmed]
 - I imagine the business context highlights are not merely suggestions, and I should actually have a robust system that is publicly accessible
 
 ### High-Level System Diagram
@@ -22,9 +22,10 @@ xyz
 - Create a MySQL database
 - Using the database you just created, create tables in your database based on your schema
 - Your database, while running, will by default be hosted on port 3306
-
+---
 - Create Spring Boot backend using its [bootstrapper](https://start.spring.io), set up using the screenshot configuration
-<img width="660" height="370" alt="springbootstrap" src="https://github.com/user-attachments/assets/d3dc9899-f371-42a7-a6a8-106b6ff8662e" />
+<img width="660" height="400" alt="springbootstrap" src="https://github.com/user-attachments/assets/1b38401e-e3d7-40d5-b31b-3485febff5db" />
+
 
 
 - Hit "generate" and extract the zip contents into your workspace
@@ -34,7 +35,7 @@ xyz
 - Implement the respective functionalities inside each of these subdirectories
 - Once complete, run your backend server using mvn `mvn spring-boot:run`, you'll have to have Maven installed for this
 - Your backend, while running, will by default be hosted on port 8080
-
+---
 - Create a landing page that will allow users to log in and sign up
 - Create a page where scores will be displayed
 
@@ -54,8 +55,9 @@ SELECT <column(s)> FROM Student WHERE <criteria>;
 ```
 #### Backend
 Backend testing can be done using Postman since API endpoints are set up (though testing using localhost requires installing Postman Agent), and GET and POST requests can be tested as follows:\
-GET:<img width="1367" height="651" alt="get_example" src="https://github.com/user-attachments/assets/af69a276-cee1-473c-94ba-bff201cbd652" />
-POST:<img width="1377" height="660" alt="post_exmaple" src="https://github.com/user-attachments/assets/009b2364-b8ba-424d-b9b0-83b1e2b8a237" />
+<img width="310" height="280" alt="get_ex" src="https://github.com/user-attachments/assets/1aea607a-af91-4998-8ac7-c602385c6808" />
+<img width="310" height="280" alt="check_ex" src="https://github.com/user-attachments/assets/da9678fb-34f8-4a19-82cd-6d5c394fdeec" />
+<img width="310" height="280" alt="post_ex" src="https://github.com/user-attachments/assets/c86b8121-2c22-4b17-adf5-07f2e5be59b0" />
 
 ### Notes
 Originally created so that entire system runs locally and frontend can be accessed via localhost
