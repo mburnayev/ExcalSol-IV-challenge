@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, Router } from '@angular/router';
-import { StudentService } from '../../services/student.service';
 
 @Component({
     selector: 'app-gradeview',
@@ -9,7 +8,7 @@ import { StudentService } from '../../services/student.service';
     standalone: true
 })
 export class GradeviewComponent {
-    constructor(private router: Router, private studentService: StudentService) { }
+    constructor(private router: Router) { }
 
     ngOnInit(): void {
         // this.studentService.getStudent().subscribe
