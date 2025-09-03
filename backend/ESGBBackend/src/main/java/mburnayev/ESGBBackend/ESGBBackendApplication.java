@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 public class ESGBBackendApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Running...");
 		SpringApplication.run(ESGBBackendApplication.class, args);
 	}
 
