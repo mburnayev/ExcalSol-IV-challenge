@@ -25,21 +25,33 @@ export class HomeComponent {
     });
 
     public handleSigninSubmit() {
+        if (this.signinData.value.username?.trim() === "" || this.signinData.value.password?.trim() === "") {
+            alert("Cannot sign in with invalid credentials!");
+            this.signinData.reset();
+            return;
+        }
         this.httpClient.get(`${this.API_URL}/check/${this.signinData.value.username}+${this.signinData.value.password}`).subscribe((data: any) => {
             if (data != null) {
                 this.router.navigate(["/grades"]);
             } else {
                 alert("Invalid credentials!");
+                this.signinData.reset();
             }
         });
     }
 
     public handleSignupSubmit() {
+        if (this.signupData.value.username?.trim() === "" || this.signupData.value.password?.trim() === "") {
+            alert("Cannot sign up with invalid credentials!");
+            this.signupData.reset();
+            return;
+        }
         this.httpClient.post(`${this.API_URL}/post`, { "username": `${this.signupData.value.username}`, "pwdhash": `${this.signupData.value.password}` }).subscribe((data: any) => {
             if (data != null) {
                 this.router.navigate(["/grades"]);
             } else {
                 alert("Account with this username already exists!");
+                this.signupData.reset();
             }
         });
     }

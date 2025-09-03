@@ -37,6 +37,12 @@ public class StudentService {
 
     // POST, Create
     public Student saveStudent(Student student) {
+        // Make Create idempotent
+        Optional<Student> testStudent = studentRepository.findByUsername(student.getUsername());
+        if (testStudent.isPresent()) {
+            return null;
+        }
+
         String hashedPwd = BCrypt.hashpw(student.getPwdhash(), BCrypt.gensalt(12));
         student.setPwdhash(hashedPwd);
 
