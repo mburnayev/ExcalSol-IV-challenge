@@ -20,7 +20,9 @@ public class StudentController {
     @CrossOrigin
     @GetMapping("/get/{id}")
     public Student getStudentById(@PathVariable int id) {
-        return studentService.getStudentById(id);
+        Student student = studentService.getStudentById(id);
+        System.out.println(student);
+        return student;
     }
 
     @CrossOrigin

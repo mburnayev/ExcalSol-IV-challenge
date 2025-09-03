@@ -76,7 +76,7 @@ An implementation of the provisioned interview coding challenge\
     - Select the key pair name you created when making your frontend under Key pair (login)
     - Select the common security group you created when making your frontend under Network Settings
     - Select "launch instance"
-- Make sure you still have your pemfile from earlier
+- Make sure to move your pemfile somewhere accessible for the following steps
 - ssh into your new EC2 instance using your variables in the following command:
     - `ssh -i <pemfile>.pem ubuntu@ec2-44-212-29-14.compute-1.amazonaws.com`
 - Once logged in, follow the steps in `backend_config.sh`
@@ -102,7 +102,7 @@ An implementation of the provisioned interview coding challenge\
     - "Create a new pair" and give it a relevant name for your project under Key pair (login), this will generate a .pem file which you should download
     - Allow SSH traffic from "My IP", HTTP and HTTPS traffic from the internet under Network Settings
     - Select "launch instance"
-- Make sure to move your pemfile somewhere accessible for the following steps
+- Make sure you still have your pemfile from earlier
 - ssh into your new EC2 instance using your variables in the following command:
     - `ssh -i <pemfile>.pem ubuntu@ec2-54-226-141-7.compute-1.amazonaws.com`
 - Once logged in, follow the steps in `frontend_config.sh`

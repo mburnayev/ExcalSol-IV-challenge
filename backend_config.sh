@@ -12,8 +12,5 @@ sudo apt-get install openjdk-17-jdk maven mysql-client-core-8.0 -y
 git clone -b public https://github.com/mburnayev/ExcalSol-IV-challenge.git
 cd backend/ESGBBackend
 mvn package
-mv 
-
-# here you would scp the Angular production build over from your local machine into /home/ubuntu (for instance) using a command like
-# scp -i <path_to_ec2_pemfile>/frontend_key.pem <path_to_jarfile>/<backend_jar> ubuntu@ec2-13-218-50-88.compute-1.amazonaws.com:/home/ubuntu
-nohup java -jar ESGBBackend-0.0.1-SNAPSHOT.jar
+mv /home/ubuntu/ExcalSol-IV-challenge/backend/ESGBBackend/target/ESGBBackend-0.0.1-SNAPSHOT.jar /home/ubuntu
+nohup java -jar ESGBBackend-0.0.1-SNAPSHOT.jar &

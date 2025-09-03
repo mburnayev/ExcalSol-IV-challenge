@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
     standalone: true
 })
 export class HomeComponent {
-    private API_URL = "http://localhost:8080"
+    private API_URL = "https://ec2-44-212-29-14.compute-1.amazonaws.com:8080"
 
     constructor(private router: Router, private httpClient: HttpClient) { }
 
