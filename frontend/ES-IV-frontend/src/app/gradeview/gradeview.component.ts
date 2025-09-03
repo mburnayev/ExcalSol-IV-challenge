@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { RouterOutlet, Router, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-gradeview',
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, CommonModule],
     templateUrl: './gradeview.component.html',
     standalone: true
 })
 export class GradeviewComponent {
-    constructor(private router: Router) { }
+    public responseData: any;
+
+    constructor(private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        // this.studentService.getStudent().subscribe
+        this.route.queryParams.subscribe(params => {
+            if (params['data']) {
+                this.responseData = JSON.parse(params['data']);
+            }
+        });
     }
 
     onSubmit(event: Event) {

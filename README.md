@@ -92,10 +92,12 @@ Tech stack used:
 
 ### Sources Used
 Frontend:\
-https://www.w3schools.com/css/css_align.asp <br>
+https://www.w3schools.com/css/css_align.asp and adjacent pages on styling <br>
 https://v17.angular.io/guide/router <br>
 https://www.youtube.com/watch?v=bCB6i6y0unA <br>
 https://angular.dev/api/forms/FormControl <br>
+https://v17.angular.io/guide/router-tutorial-toh#query-parameters <br>
+https://stackoverflow.com/questions/55924562/angular-routing-passing-json-object-but-param-is-1-solid-string <br>
 
 Backend:\
 https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/ <br>

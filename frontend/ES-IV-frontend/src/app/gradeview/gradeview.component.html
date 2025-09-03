@@ -1,4 +1,18 @@
 <style>
+    h2 {
+        text-align: center;
+        color: #000000;
+        margin-bottom: 0.5rem;
+        font-family: sans-serif, Helvetica, Arial;
+    }
+
+    p {
+        font-size: 1.125rem;
+        color: #000000;
+        margin-bottom: 1.5rem;
+        font-family: sans-serif, Helvetica, Arial;
+    }
+
     button {
         padding: 0.6rem 1rem;
         background-color: #9B1C1C;
@@ -13,16 +27,83 @@
     button:hover {
         background-color: #7A1515;
     }
+
+    .container {
+        background-color: #FFFFFF;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 2rem auto;
+    }
+
+    .header-section,
+    .content-section {
+        border-bottom: 2px solid #DDDDDD;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .button-section {
+        text-align: center;
+        padding-top: 1rem;
+    }
 </style>
 
 <main class="main">
-    <div class="content">
-        <h3>Logged in as:</h3>
-        <span>
-            <p></p>
-        </span>
-        <button type="button" (click)="onSubmit($event)">Sign Out</button>
+    <div class="container">
+        <div class="header-section">
+            <h2>--- Class Scores ---</h2>
+        </div>
+        <div class="content-section">
+            <div class="content" *ngIf="responseData">
+                <p><strong>Student Username:</strong> {{ responseData.username }}</p>
+                <p>Class 1 Score: {{ responseData.grade0 }}</p>
 
+                <div *ngIf="responseData?.grade1">
+                    <p>Class 2 Score: {{ responseData.grade1 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade2">
+                    <p>Class 3 Score: {{ responseData.grade2 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade3">
+                    <p>Class 4 Score: {{ responseData.grade3 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade4">
+                    <p>Class 5 Score: {{ responseData.grade4 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade5">
+                    <p>Class 6 Score: {{ responseData.grade5 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade6">
+                    <p>Class 7 Score: {{ responseData.grade6 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade7">
+                    <p>Class 8 Score: {{ responseData.grade7 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade8">
+                    <p>Class 9 Score: {{ responseData.grade8 }}</p>
+                </div>
+
+                <div *ngIf="responseData?.grade9">
+                    <p>Class 10 Score: {{ responseData.grade9 }}</p>
+                </div>
+            </div>
+            <div class="content" *ngIf="!responseData">
+                <p>No content to display :(</p>
+            </div>
+        </div>
+
+        <div class="button-section">
+            <button (click)="onSubmit($event)">Sign Out</button>
+        </div>
     </div>
 </main>
 

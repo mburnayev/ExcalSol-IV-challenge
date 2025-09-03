@@ -32,7 +32,7 @@ export class HomeComponent {
         }
         this.httpClient.get(`${this.API_URL}/check/${this.signinData.value.username}+${this.signinData.value.password}`).subscribe((data: any) => {
             if (data != null) {
-                this.router.navigate(["/grades"]);
+                this.router.navigate(["/grades"], {queryParams: {data: JSON.stringify(data)}});
             } else {
                 alert("Invalid credentials!");
                 this.signinData.reset();
@@ -48,7 +48,7 @@ export class HomeComponent {
         }
         this.httpClient.post(`${this.API_URL}/post`, { "username": `${this.signupData.value.username}`, "pwdhash": `${this.signupData.value.password}` }).subscribe((data: any) => {
             if (data != null) {
-                this.router.navigate(["/grades"]);
+                this.router.navigate(["/grades"], {queryParams: {data: JSON.stringify(data)}});
             } else {
                 alert("Account with this username already exists!");
                 this.signupData.reset();
