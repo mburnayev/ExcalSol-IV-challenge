@@ -14,7 +14,8 @@ An implementation of the provisioned interview coding challenge\
 <img width="748" height="550" alt="Screenshot 2025-09-01 at 12 58 24 PM" src="https://github.com/user-attachments/assets/294e6a30-a52a-4bc3-907f-08fa644b10df" />
 
 ### Core Component Deployment Diagram
-xyz
+<img width="976" height="534" alt="deployment_diagram" src="https://github.com/user-attachments/assets/4c15a9b3-8a4f-4c70-95bf-23a5a580cebb" />
+
 
 ### Setup Instructions
 - Download your MySQL community server from [here](https://dev.mysql.com/downloads/) and install it
