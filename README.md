@@ -9,13 +9,16 @@ An implementation of the provisioned interview coding challenge\
 - I can create arbitrary records as soon as a user is created [confirmed]
 - Considering that I'm created a gradebook that's only viewable by students, implementing just GET/POSTs is sufficient [confirmed]
 - I imagine the business context highlights are not merely suggestions, and I should actually have a robust system that is publicly accessible
+- I don't think I need to include literally *every* resource I came across since that would work against keeping my README concise
+    - I think including just the ones that provided the most utility would be satisfactory
+- The instructions ask to include all required artifacts, but including some cloud stuff (e.g. ssh keys) doesn't seem smart, so I will omit those inclusions
+    - I'll include what seems right, but will also make sensitive artifacts available upon request
 
 ### High-Level System Diagram
 <img width="748" height="550" alt="Screenshot 2025-09-01 at 12 58 24 PM" src="https://github.com/user-attachments/assets/294e6a30-a52a-4bc3-907f-08fa644b10df" />
 
 ### Core Component Deployment Diagram
 <img width="976" height="534" alt="deployment_diagram" src="https://github.com/user-attachments/assets/4c15a9b3-8a4f-4c70-95bf-23a5a580cebb" />
-
 
 ### Setup Instructions
 - Download your MySQL community server from [here](https://dev.mysql.com/downloads/) and install it
@@ -105,7 +108,7 @@ https://www.youtube.com/watch?v=ODA3rWfmzg8 <br>
 https://www.w3schools.com/sql/sql_syntax.asp <br>
 https://www.w3schools.com/sql/sql_datatypes.asp and adjacent pages on keywords <br>
 
-System Modeling: \
+System Modeling:\
 https://drawio-app.com/blog/create-uml-deployment-diagrams-in-draw-io/ <br>
 https://www.lucidchart.com/pages/uml-deployment-diagram <br>
 
