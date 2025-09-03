@@ -83,10 +83,10 @@ Tech stack used:
 - Java with Spring Boot Framework
 - MySQL Database
 - Postman
+- AWS EC2s for frontend hosting w/ Nginx
+- AWS RDS for database hosting my MySQL DB
 ---
-- Locally hosted frontend -> AWS EC2s for hosting w/ Nginx
 - Locally hosted backend -> AWS EC2 as well probably
-- Locally hosted MySQL DB -> AWS RDS
 - Docker
 - Jenkins
 
