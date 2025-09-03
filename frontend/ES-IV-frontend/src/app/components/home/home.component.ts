@@ -1,51 +1,46 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet, Router } from '@angular/router';
-import { FormGroup, FormControl, NgModel, ReactiveFormsModule } from '@angular/forms'
-import { IntegrationService } from '../../services/integration.service';
-import { LoginRequest } from '../../models/login-request';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms'
+import { HttpClient } from '@angular/common/http';
 
-// @NgModule({
-//     imports: [
-//         ReactiveFormsModule
-//     ]
-// })
 @Component({
     selector: 'app-home',
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, ReactiveFormsModule],
     templateUrl: './home.component.html',
     standalone: true
 })
 export class HomeComponent {
-    constructor(private router: Router, private integration: IntegrationService) { }
+    private API_URL = "http://localhost:8080"
 
-    userForm: FormGroup = new FormGroup({
+    constructor(private router: Router, private httpClient: HttpClient) { }
+
+    public signinData = new FormGroup({
         username: new FormControl(''),
-        password: new FormControl(''),
-    })
+        password: new FormControl('')
+    });
 
-    request: LoginRequest = new LoginRequest;
+    public signupData = new FormGroup({
+        username: new FormControl(''),
+        password: new FormControl('')
+    });
 
-    doLogin() {
-        const formValue = this.userForm.value;
-
-        if(formValue.username == '' || formValue.password == '') {
-            alert('Invalid credentials');
-            return;
-        }
-
-        this.request.username = formValue.username;
-        this.request.password = formValue.password;
-
-        this.integration.doLogin(this.request).subscribe({
-            next: (res) => {
-                console.log("valid resp:" + res.token);
-            }, error: (err) => {
-                console.log("Error :(" + err)
+    public handleSigninSubmit() {
+        this.httpClient.get(`${this.API_URL}/check/${this.signinData.value.username}+${this.signinData.value.password}`).subscribe((data: any) => {
+            if (data != null) {
+                this.router.navigate(["/grades"]);
+            } else {
+                alert("Invalid credentials!");
             }
-        })
+        });
     }
 
-    onSubmit(event: Event) {
-        this.router.navigate(['/grades'])
+    public handleSignupSubmit() {
+        this.httpClient.post(`${this.API_URL}/post`, { "username": `${this.signupData.value.username}`, "pwdhash": `${this.signupData.value.password}` }).subscribe((data: any) => {
+            if (data != null) {
+                this.router.navigate(["/grades"]);
+            } else {
+                alert("Account with this username already exists!");
+            }
+        });
     }
 } 

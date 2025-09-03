@@ -27,7 +27,6 @@ xyz
 <img width="660" height="400" alt="springbootstrap" src="https://github.com/user-attachments/assets/1b38401e-e3d7-40d5-b31b-3485febff5db" />
 
 
-
 - Hit "generate" and extract the zip contents into your workspace
 - Inside your workspace, navigate to src/main/resources and update application.properties to allow your backend access to your database
 - Inside your workspace, navigate to src/main/java/<your group>
@@ -82,6 +81,7 @@ Tech stack used:
 Frontend:\
 https://www.w3schools.com/css/css_align.asp <br>
 https://v17.angular.io/guide/router <br>
+https://www.youtube.com/watch?v=bCB6i6y0unA <br>
 
 Backend: \
 https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/ <br>
