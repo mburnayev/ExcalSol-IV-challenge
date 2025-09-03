@@ -1,0 +1,29 @@
+<style>
+    button {
+        padding: 0.6rem 1rem;
+        background-color: #9B1C1C;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+
+    button:hover {
+        background-color: #7A1515;
+    }
+</style>
+
+<main class="main">
+    <div class="content">
+        <h3>Logged in as:</h3>
+        <span>
+            <p></p>
+        </span>
+        <button type="button" (click)="onSubmit($event)">Sign Out</button>
+
+    </div>
+</main>
+
+<router-outlet />

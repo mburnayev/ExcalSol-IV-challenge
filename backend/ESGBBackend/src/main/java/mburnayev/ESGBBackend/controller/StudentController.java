@@ -24,6 +24,12 @@ public class StudentController {
     }
 
     @CrossOrigin
+    @GetMapping("/check/{username}+{password}")
+    public Student getStudentByLoginCredentials(@PathVariable String username, @PathVariable String password) {
+        return studentService.getStudentByLoginCredentials(username, password);
+    }
+
+    @CrossOrigin
     @PostMapping("/post")
     public Student addStudent(@RequestBody Student student) {
         return studentService.saveStudent(student);

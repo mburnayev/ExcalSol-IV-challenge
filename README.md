@@ -56,14 +56,13 @@ SELECT <column(s)> FROM Student WHERE <criteria>;
 Backend testing can be done using Postman since API endpoints are set up (though testing using localhost requires installing Postman Agent), and GET and POST requests can be tested as follows:\
 GET:<img width="1367" height="651" alt="get_example" src="https://github.com/user-attachments/assets/af69a276-cee1-473c-94ba-bff201cbd652" />
 POST:<img width="1377" height="660" alt="post_exmaple" src="https://github.com/user-attachments/assets/009b2364-b8ba-424d-b9b0-83b1e2b8a237" />
+
 ### Notes
 Originally created so that entire system runs locally and frontend can be accessed via localhost
 (Plans to get this implementation) Revised and fully public-facing using cloud services
 
-As mentioned in the Testing Steps, the database schema I used is very simple and not a good representation of best practices when using relational databases: I opted for this solution strictly for demonstrative purposes. I initially came up with a more complex schema, as shown below, that made use of relations, but realized it would take longer to create test queries and even longer to implement backend calls that would satisfy the relations, so I opted for what I knew I could implement in the time I had alloted.
+As mentioned in the Testing Steps, the database schema I used is very simple and not a good representation of best practices when using relational databases; I opted for this solution strictly for demonstrative purposes. I initially came up with a more complex schema, as shown below, that made use of relations, but realized it would take longer to create test queries and even longer to implement backend calls that would satisfy the relations, so I opted for what I knew I could implement in the time I had alloted.
 <img width="580" height="397" alt="better_schema" src="https://github.com/user-attachments/assets/fdeacfdb-cbd6-42b4-8f68-9c5904ad063c" />
-
-I originally planned to use Spring Security to add an extra layer of authentication to the server running Spring Boot, but during my testing in Postman, I found that POST requests specifically were being denied due to a lack of authorization, despite correctly configuring the Auth Type (since it was needed for GETs as well, and those worked). Solutions online indicated the best solution to work this issue was to simply disable Spring Security (but just for testing/development purposes !), but I decided to continue without excess dependencies, so I removed it.
 
 Tech stack used:
 - HTML + TypeScript with Angular Framework
@@ -86,6 +85,7 @@ Backend: \
 https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/ <br>
 https://stackoverflow.com/questions/40902280/what-is-the-recommended-project-structure-for-spring-boot-rest-projects <br>
 https://stackoverflow.com/questions/54758872/spring-boot-security-postman-gives-401-unauthorized <br>
+https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/ <br>
 
 Database: \
 https://www.youtube.com/watch?v=ODA3rWfmzg8 <br>

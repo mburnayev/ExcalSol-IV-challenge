@@ -1,8 +1,10 @@
 package mburnayev.ESGBBackend.service;
 
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import mburnayev.ESGBBackend.entity.Student;
@@ -21,8 +23,23 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
+    public Student getStudentByLoginCredentials(String username, String password) {
+        Optional<Student> schrodingersStudent = studentRepository.findByUsername(username);
+
+        if (!schrodingersStudent.isPresent()) {
+            return null;
+        }
+
+        Student student = schrodingersStudent.get();
+
+        return BCrypt.checkpw(password, student.getPwdhash()) ? student : null;
+    }
+
     // POST, Create
     public Student saveStudent(Student student) {
+        String hashedPwd = BCrypt.hashpw(student.getPwdhash(), BCrypt.gensalt(12));
+        student.setPwdhash(hashedPwd);
+
         Random r = new Random();
         int numGrades = r.nextInt(10) + 1;
         for (int i = 0; i < numGrades; i++) {
