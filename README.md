@@ -21,6 +21,7 @@ An implementation of the provisioned interview coding challenge\
 <img width="976" height="534" alt="deployment_diagram" src="https://github.com/user-attachments/assets/4c15a9b3-8a4f-4c70-95bf-23a5a580cebb" />
 
 ### Setup Instructions
+#### Localhost
 - Download your MySQL community server from [here](https://dev.mysql.com/downloads/) and install it
     - Optionally install MySQL Workbench to access and interact with your databases through a GUI
 - Create a MySQL database
@@ -47,6 +48,28 @@ An implementation of the provisioned interview coding challenge\
 - In scores page TS, add logic to display results of API responses on successful login
 - Once complete, run your backend server using `ng serve`
 - Your frontend, while running, will by default be hosted on port 4200
+
+#### Greater Internet
+- Once you have a production-ready build, you can export your project using `ng build --configuration=production`
+    - This will produce artifacts which are output in <angular_project>/dist/ which in my cases included
+        - /browser
+        - 3rdpartlicenses.txt
+        - prerendered-routes.json
+- For simplicity, also zip it and name it appropriately
+- In AWS, navigate to the EC2 dashboard and launch a new instance
+- To complete the EC2 GUI configuration select/enter these options into the following fields:
+    - <your_frontend_server_name> in Name under Name and tag
+    - Ubuntu Server 24.04 LTS (HVM) under Application and OS Images (Amazon Machine Image)
+    - t3.micro under Instance type
+    - "Create a new pair" and name it something relevant to your frontend under Key pair (login)
+    - Allow SSH traffic from "My IP", HTTP and HTTPS traffic from the internet
+    - Select "launch instance"
+- Make sure to move your pemfile somewhere accessible for the following steps
+- Log into your new EC2 instance using OpenSSH using your variables in the following command:
+    - `ssh -i <pemfile>.pem ubuntu@ec2-54-226-141-7.compute-1.amazonaws.com`
+- Once logged in, follow the steps in `frontend_config.sh`
+- If you get through the steps, you should see your Angular app when you visit your EC2 URL
+---
 
 ### Testing Steps
 #### Database
@@ -78,12 +101,14 @@ Originally created so that entire system runs locally and frontend can be access
 As mentioned in the Testing Steps, the database schema I used is very simple and not a good representation of best practices when using relational databases; I opted for this solution strictly for demonstrative purposes. I initially came up with a more complex schema, as shown below, that made use of relations, but realized it would take longer to create test queries and even longer to implement backend calls that would satisfy the relations, so I opted for what I knew I could implement in the time I had alloted.
 <img width="580" height="397" alt="better_schema" src="https://github.com/user-attachments/assets/fdeacfdb-cbd6-42b4-8f68-9c5904ad063c" />
 
+As you might've noticed when you successfully navigate to the `/grades` route, the URL also tacks on the JSON response body, which isn't a good practice and something I meant to fix, but I opted to start the great migration to public availability. Outside of the demo, I would resolve this security issue by using routing guards to just show the route.
+
 Tech stack used:
 - HTML + TypeScript with Angular Framework
 - Java with Spring Boot Framework
 - MySQL Database
 - Postman
-- AWS EC2s for frontend hosting w/ Nginx
+- AWS EC2s for frontend hosting w/ Nginx (accessible @ ec2-54-226-141-7.compute-1.amazonaws.com)
 - AWS RDS for database hosting my MySQL DB
 ---
 - Locally hosted backend -> AWS EC2 as well probably
@@ -113,4 +138,10 @@ https://www.w3schools.com/sql/sql_datatypes.asp and adjacent pages on keywords <
 System Modeling:\
 https://drawio-app.com/blog/create-uml-deployment-diagrams-in-draw-io/ <br>
 https://www.lucidchart.com/pages/uml-deployment-diagram <br>
+
+Cloud Setup:\
+https://stackoverflow.com/questions/50378664/permission-denied-inside-var-www-html-when-creating-a-website-and-its-files-wi <br>
+https://medium.com/globant/manual-deployment-of-angular-app-to-aws-ec2-b5cb5466bbfc <br>
+https://www.digitalocean.com/community/tutorials/nginx-location-directive <br>
+
 
