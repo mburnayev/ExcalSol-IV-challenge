@@ -22,6 +22,7 @@ An implementation of the provisioned interview coding challenge\
 
 ### Setup Instructions
 #### Localhost
+---
 - Download your MySQL community server from [here](https://dev.mysql.com/downloads/) and install it
     - Optionally install MySQL Workbench to access and interact with your databases through a GUI
 - Create a MySQL database
@@ -48,9 +49,46 @@ An implementation of the provisioned interview coding challenge\
 - In scores page TS, add logic to display results of API responses on successful login
 - Once complete, run your backend server using `ng serve`
 - Your frontend, while running, will by default be hosted on port 4200
-
+---
 #### Greater Internet
-- Once you have a production-ready build, you can export your project using `ng build --configuration=production`
+---
+- Once you are ready to deploy your database, save your SQL queries used to create the schema of your database
+- In AWS, navigate to the Aurora and RDS dashboard and select "create a database"
+- Choose the following selections in the following fields
+    - Select Easy create under "Choose a database creation method"
+    - MySQL under "Configuration"  
+        - MySQL Community under "Edition"
+        - Free tier under "DB instance size"
+    - an appropriate name for your DB instance identifier
+    - an appropriate username for your Master username
+    - Self Managed under "Credentials management"
+    - a strong password under Master password
+    - Connect to an EC2 compute resource and select your backend EC2 under "Set up EC2 connection - optional"
+    - Select "Create database"
+[Here I got tremendously stuck accessing it and wasted a lot of time so I opted for an alternate solution]
+- Further steps present in the backend setup
+---
+- In AWS, navigate to the EC2 dashboard and launch a new instance
+- To complete the EC2 GUI configuration select/enter these options into the following fields:
+    - <your_backend_server_name> in Name under Name and tag
+    - Ubuntu Server 24.04 LTS (HVM) under Application and OS Images (Amazon Machine Image)
+    - c7i-flex.large under Instance type
+    - Select the key pair name you created when making your frontend under Key pair (login)
+    - Select the common security group you created when making your frontend under Network Settings
+    - Select "launch instance"
+- Make sure you still have your pemfile from earlier
+- ssh into your new EC2 instance using your variables in the following command:
+    - `ssh -i <pemfile>.pem ubuntu@ec2-44-212-29-14.compute-1.amazonaws.com`
+- Once logged in, follow the steps in `backend_config.sh`
+- If you get through the steps, you should be able to start the spring app without any errors
+
+- 
+- Once you have a production-ready backend build, you can export your project using `mvn package`
+    - This will produce a jar artifact under <spring_project>/target/ named <artifactID>-<version>.jar
+- To test that my endpoints work, I can use this URL, `https://ec2-44-212-29-14.compute-1.amazonaws.com:8080/get/1`, which if it works, will return a valid response 
+---
+- With your backend set up, remember to retroactively update the API URL in the frontend to use the AWS URL and redeploy
+- Once you have a production-ready frontend build, you can export your project using `ng build --configuration=production`
     - This will produce artifacts which are output in <angular_project>/dist/ which in my cases included
         - /browser
         - 3rdpartlicenses.txt
@@ -61,16 +99,15 @@ An implementation of the provisioned interview coding challenge\
     - <your_frontend_server_name> in Name under Name and tag
     - Ubuntu Server 24.04 LTS (HVM) under Application and OS Images (Amazon Machine Image)
     - t3.micro under Instance type
-    - "Create a new pair" and name it something relevant to your frontend under Key pair (login)
-    - Allow SSH traffic from "My IP", HTTP and HTTPS traffic from the internet
+    - "Create a new pair" and give it a relevant name for your project under Key pair (login), this will generate a .pem file which you should download
+    - Allow SSH traffic from "My IP", HTTP and HTTPS traffic from the internet under Network Settings
     - Select "launch instance"
 - Make sure to move your pemfile somewhere accessible for the following steps
-- Log into your new EC2 instance using OpenSSH using your variables in the following command:
+- ssh into your new EC2 instance using your variables in the following command:
     - `ssh -i <pemfile>.pem ubuntu@ec2-54-226-141-7.compute-1.amazonaws.com`
 - Once logged in, follow the steps in `frontend_config.sh`
 - If you get through the steps, you should see your Angular app when you visit your EC2 URL
 ---
-
 ### Testing Steps
 #### Database
 Since I opted for a very simple schema with only one table, testing the database by directly querying in the minimalist fashion that the backend will also be doing it is also simple — the Student table has 13 columns: 1 for an id, 1 for a username, 1 for a password hash, and 10 for grades.
@@ -103,17 +140,16 @@ As mentioned in the Testing Steps, the database schema I used is very simple and
 
 As you might've noticed when you successfully navigate to the `/grades` route, the URL also tacks on the JSON response body, which isn't a good practice and something I meant to fix, but I opted to start the great migration to public availability. Outside of the demo, I would resolve this security issue by using routing guards to just show the route.
 
+Access to the Spring App server currently isn't secure since I initially had trouble fulfilling POST requests when I would authenticate all requests and I disabled it for development purposes, but didn't have time to go back and figure out why GETs worked without issue while POSTs returned 401s, despite both requiring (and providing) valid authentication credentials.
+
 Tech stack used:
 - HTML + TypeScript with Angular Framework
 - Java with Spring Boot Framework
 - MySQL Database
 - Postman
-- AWS EC2s for frontend hosting w/ Nginx (accessible @ ec2-54-226-141-7.compute-1.amazonaws.com)
-- AWS RDS for database hosting my MySQL DB
----
-- Locally hosted backend -> AWS EC2 as well probably
-- Docker
-- Jenkins
+- AWS EC2 for frontend hosting w/ Nginx     (ec2-54-226-141-7.compute-1.amazonaws.com)
+- AWS EC2 for backend hosting               (ec2-13-218-50-88.compute-1.amazonaws.com)
+- AWS RDS for database hosting my MySQL DB  (database-1.cajukacwqnpg.us-east-1.rds.amazonaws.com)
 
 ### Sources Used
 Frontend:\
@@ -123,12 +159,14 @@ https://www.youtube.com/watch?v=bCB6i6y0unA <br>
 https://angular.dev/api/forms/FormControl <br>
 https://v17.angular.io/guide/router-tutorial-toh#query-parameters <br>
 https://stackoverflow.com/questions/55924562/angular-routing-passing-json-object-but-param-is-1-solid-string <br>
+https://docs.angular.lat/cli/build <br>
 
 Backend:\
 https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/ <br>
 https://stackoverflow.com/questions/40902280/what-is-the-recommended-project-structure-for-spring-boot-rest-projects <br>
 https://stackoverflow.com/questions/54758872/spring-boot-security-postman-gives-401-unauthorized <br>
 https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/ <br>
+https://stackoverflow.com/questions/10036090/how-to-create-jar-using-maven-pom-xml <br>
 
 Database:\
 https://www.youtube.com/watch?v=ODA3rWfmzg8 <br>
@@ -143,5 +181,7 @@ Cloud Setup:\
 https://stackoverflow.com/questions/50378664/permission-denied-inside-var-www-html-when-creating-a-website-and-its-files-wi <br>
 https://medium.com/globant/manual-deployment-of-angular-app-to-aws-ec2-b5cb5466bbfc <br>
 https://www.digitalocean.com/community/tutorials/nginx-location-directive <br>
-
-
+https://medium.com/@sharma1996priya/deploying-a-spring-boot-application-to-an-amazon-ec2-instance-using-the-scp-command-4656e330aa61 <br>
+https://www.youtube.com/watch?v=qdk1p1zgBPI <br>
+https://stackoverflow.com/questions/35858538/error-2003-hy000-cant-connect-to-mysql-server-on-aws-rds <br>
+https://stackoverflow.com/questions/54211638/unable-to-open-jdbc-connection-for-ddl-execution <br>

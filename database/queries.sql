@@ -1,3 +1,5 @@
+CREATE DATABASE ES_grades;
+
 USE ES_grades;
 
 CREATE TABLE Student (
