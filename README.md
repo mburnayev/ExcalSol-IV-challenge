@@ -80,12 +80,8 @@ An implementation of the provisioned interview coding challenge\
 - ssh into your new EC2 instance using your variables in the following command:
     - `ssh -i <pemfile>.pem ubuntu@ec2-44-212-29-14.compute-1.amazonaws.com`
 - Once logged in, follow the steps in `backend_config.sh`
-- If you get through the steps, you should be able to start the spring app without any errors
-
-- 
-- Once you have a production-ready backend build, you can export your project using `mvn package`
-    - This will produce a jar artifact under <spring_project>/target/ named <artifactID>-<version>.jar
-- To test that my endpoints work, I can use this URL, `https://ec2-44-212-29-14.compute-1.amazonaws.com:8080/get/1`, which if it works, will return a valid response 
+- If you get through the steps, you have a working spring app that is ready to handle requests 
+- To test that my endpoints work, I can use this URL, `http://ec2-44-212-29-14.compute-1.amazonaws.com:8080/get/1`, which if it works, will return a valid response 
 ---
 - With your backend set up, remember to retroactively update the API URL in the frontend to use the AWS URL and redeploy
 - Once you have a production-ready frontend build, you can export your project using `ng build --configuration=production`
@@ -132,8 +128,7 @@ Backend testing can be done using Postman since API endpoints are set up (though
 Around the time I was able to successfully create new students through the frontend, I remembered that a duplicate CREATE command would probably not work since usernames are unique and this would cause issues, so I made the backend POST/CREATE service check the Student repository for student with a potentially existing username before creating and adding a new student. I also figured I shouldn't allow users to create new students using nothingburger credentials, so I added empty string checks to all input fields.
 
 ### Notes
-Originally created so that entire system runs locally and frontend can be accessed via localhost
-(Plans to get this implementation) Revised and fully public-facing using cloud services
+Originally created so that entire system runs locally and frontend can be accessed via localhost, revised and made fully public-facing using cloud services
 
 As mentioned in the Testing Steps, the database schema I used is very simple and not a good representation of best practices when using relational databases; I opted for this solution strictly for demonstrative purposes. I initially came up with a more complex schema, as shown below, that made use of relations, but realized it would take longer to create test queries and even longer to implement backend calls that would satisfy the relations, so I opted for what I knew I could implement in the time I had alloted.
 <img width="580" height="397" alt="better_schema" src="https://github.com/user-attachments/assets/fdeacfdb-cbd6-42b4-8f68-9c5904ad063c" />
@@ -141,6 +136,10 @@ As mentioned in the Testing Steps, the database schema I used is very simple and
 As you might've noticed when you successfully navigate to the `/grades` route, the URL also tacks on the JSON response body, which isn't a good practice and something I meant to fix, but I opted to start the great migration to public availability. Outside of the demo, I would resolve this security issue by using routing guards to just show the route.
 
 Access to the Spring App server currently isn't secure since I initially had trouble fulfilling POST requests when I would authenticate all requests and I disabled it for development purposes, but didn't have time to go back and figure out why GETs worked without issue while POSTs returned 401s, despite both requiring (and providing) valid authentication credentials.
+
+You may have noticed the frontend is not secure: I wanted to setup up an HTTPS connection since I had tried it in the past before for a different project, but I once again ran out of time. If I were to revise this project, I'd add the necessary references to certificates and keys and bring back the Inbound and Outbound rules for HTTPS traffic to my EC2s.
+
+While I'm pretty sure AWS' services are managed in such a way that they are supposed to guarantee high uptime and performance, I unfortunately also didn't have time to hook up a load balancer to my frontend EC2 that I would've used in conjunction with Auto Scaling to spin up as many backends I would've needed to in different availability zones to handle hypothetical traffic. Fotunately, AWS is generous enough to provide a little bit of database redudancy by creating a backup database, but it's a far cry from using Aurora to get the horizontal scaling for maximal redundancy (and there's no free tier option to use it).
 
 Tech stack used:
 - HTML + TypeScript with Angular Framework
@@ -172,6 +171,8 @@ Database:\
 https://www.youtube.com/watch?v=ODA3rWfmzg8 <br>
 https://www.w3schools.com/sql/sql_syntax.asp <br>
 https://www.w3schools.com/sql/sql_datatypes.asp and adjacent pages on keywords <br>
+https://stackoverflow.com/questions/16287559/mysql-adding-user-for-remote-access <br>
+https://stackoverflow.com/questions/8348506/grant-remote-access-of-mysql-database-from-any-ip-address <br>
 
 System Modeling:\
 https://drawio-app.com/blog/create-uml-deployment-diagrams-in-draw-io/ <br>
@@ -185,3 +186,4 @@ https://medium.com/@sharma1996priya/deploying-a-spring-boot-application-to-an-am
 https://www.youtube.com/watch?v=qdk1p1zgBPI <br>
 https://stackoverflow.com/questions/35858538/error-2003-hy000-cant-connect-to-mysql-server-on-aws-rds <br>
 https://stackoverflow.com/questions/54211638/unable-to-open-jdbc-connection-for-ddl-execution <br>
+https://stackoverflow.com/questions/39673660/springboot-app-running-on-aws-ec2-unable-to-connect-to-mysql-aws-rds-database <br>
