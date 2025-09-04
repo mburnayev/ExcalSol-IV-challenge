@@ -30,7 +30,7 @@ An implementation of the provisioned interview coding challenge\
 - Your database, while running, will by default be hosted on port 3306
 ---
 - Create Spring Boot backend using its [bootstrapper](https://start.spring.io), set up using the screenshot configuration
-<img width="660" height="400" alt="springbootstrap" src="https://github.com/user-attachments/assets/1b38401e-e3d7-40d5-b31b-3485febff5db" />
+<img width="660" height="400" alt="Screenshot 2025-09-03 at 2 38 06 PM" src="https://github.com/user-attachments/assets/189e211b-73d2-4df8-983c-7fadb08b7e85" />
 
 
 - Hit "generate" and extract the zip contents into your workspace
